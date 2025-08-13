@@ -1,21 +1,25 @@
 # 
 module "ingress_alb" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/siri-123706/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/MEDASANI-CHARAN/02-terraform-aws-sg-module.git?ref=main"
     project = var.project
     environment = var.environment
-
-    sg_name = "ingress-alb"
+    sg_tags = {
+      Name = "ingress-alb"
+    }
+    sg_name = "ingress_alb"
     sg_description = "for ingress alb"
     vpc_id = local.vpc_id
 }
 
 module "bastion" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/siri-123706/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/MEDASANI-CHARAN/02-terraform-aws-sg-module.git?ref=main"
     project = var.project
     environment = var.environment
-
+    sg_tags = {
+      Name = "bastion"
+    }
     sg_name = var.bastion_sg_name
     sg_description = var.bastion_sg_description
     vpc_id = local.vpc_id
@@ -23,10 +27,12 @@ module "bastion" {
 
 module "vpn" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/siri-123706/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/MEDASANI-CHARAN/02-terraform-aws-sg-module.git?ref=main"
     project = var.project
     environment = var.environment
-
+    sg_tags = {
+      Name = "vpn"
+    }
     sg_name = "vpn"
     sg_description = "for vpn"
     vpc_id = local.vpc_id
@@ -34,10 +40,12 @@ module "vpn" {
 
 module "eks_control_plane" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/siri-123706/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/MEDASANI-CHARAN/02-terraform-aws-sg-module.git?ref=main"
     project = var.project
     environment = var.environment
-
+    sg_tags = {
+      Name = "ingress-alb"
+    }
     sg_name = "eks_control_plane"
     sg_description = "for eks_control_plane"
     vpc_id = local.vpc_id
@@ -45,10 +53,12 @@ module "eks_control_plane" {
 
 module "eks_node" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/siri-123706/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/MEDASANI-CHARAN/02-terraform-aws-sg-module.git?ref=main"
     project = var.project
     environment = var.environment
-
+    sg_tags = {
+      Name = "eks_node"
+    }
     sg_name = "eks_node"
     sg_description = "for eks_node"
     vpc_id = local.vpc_id

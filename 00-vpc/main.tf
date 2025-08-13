@@ -1,6 +1,6 @@
 module "vpc" {
     # source = "../../terraform-aws-vpc"
-    source = "git::https://github.com/siri-123706/terraform-aws-vpc.git?ref=main"
+    source = "git::https://github.com/MEDASANI-CHARAN/01-terraform-aws-vpc.git?ref=main"
       
     project = "roboshop"
     environment = var.environment
@@ -8,10 +8,7 @@ module "vpc" {
     private_subnet_cidrs = var.private_subnet_cidrs
     database_subnet_cidrs = var.database_subnet_cidrs
 
-    is_peering_required = true
+    is_peering_required = false
 
 }
-# output "vpc_ids" {
-# value = module.vpc.public_subnet_ids
-# }
- 
+
